@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riverbir — аренда домика у реки в Башкирии | Отдых на природе</title>
+<meta name="description" content="Аренда уютного домика у реки в Башкирии. Отдых на природе рядом с Уфой: баня на дровах, сап-борды, лес и тишина. Домик до 4 человек без соседей."><meta name="keywords" content="аренда домика Башкирия, отдых на природе Башкирия, домик у реки, глэмпинг Башкирия, аренда дома у воды">
+<meta property="og:title" content="Riverbir — домик у реки в Башкирии">
+<meta property="og:description" content="Tiny house на пересечении реки Бирь и соснового леса. Баня, сап-борды, тишина.">
+<meta property="og:image" content="https://вашсайт.ru/photos/hero.jpg">
+<meta property="og:url" content="https://вашсайт.ru">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F2EA;
+    --warm-dark: #2C2416;
+    --warm-mid: #6B5740;
+    --accent: #8B6B3D;
+    --accent-light: #C9A96E;
+    --water: #5B8FA8;
+    --water-light: #A8C8DC;
+    --white: #FDFAF5;
+    --text-muted: #8A7B6A;
+    --border: rgba(139,107,61,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--warm-dark);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(247,242,234,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--warm-dark);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--warm-mid);
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 400; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--white) !important;
+    padding: 0.5rem 1.2rem; border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--warm-dark) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+  .hero-tag {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before { content: ''; display: inline-block; width: 32px; height: 0.5px; background: var(--accent); }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    line-height: 1.15;
+    color: var(--warm-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; color: var(--warm-mid);
+    max-width: 420px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--warm-dark); }
+  .btn-ghost {
+    color: var(--warm-mid); font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; font-weight: 400;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-photo {
+    width: 100%; height: 100%; object-fit: cover;
+    background: linear-gradient(135deg, #8BA8B8 0%, #C9A96E55 50%, #6B5740 100%);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 600px;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%; min-height: 600px;
+    background: linear-gradient(160deg, #B8CEDE 0%, #8BA8B8 40%, #5B8FA8 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.75rem;
+    position: relative;
+  }
+  .photo-placeholder svg { opacity: 0.35; }
+  .photo-label {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); font-weight: 400;
+  }
+  .hero-badge {
+    position: absolute; bottom: 2.5rem; left: -2rem;
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(44,36,22,0.12);
+  }
+  .badge-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+  .badge-txt { font-size: 0.75rem; color: var(--warm-mid); margin-top: 0.25rem; }
+
+  /* WAVE DIVIDER */
+  .wave { display: block; }
+
+  /* FEATURES */
+  .features {
+    background: var(--white);
+    padding: 6rem 6rem;
+  }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 400; line-height: 1.25;
+    max-width: 500px; margin-bottom: 3rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border: 0.5px solid var(--border);
+  }
+  .feat-card {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--border);
+    background: var(--white);
+    transition: background 0.25s;
+  }
+  .feat-card:last-child { border-right: none; }
+  .feat-card:hover { background: var(--cream); }
+  .feat-icon {
+    width: 40px; height: 40px;
+    background: var(--cream);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 18px;
+  }
+  .feat-name { font-weight: 500; font-size: 1rem; margin-bottom: 0.5rem; color: var(--warm-dark); }
+  .feat-desc { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.65; }
+
+  /* GALLERY */
+  .gallery {
+    padding: 6rem;
+    background: var(--cream);
+  }
+  .gallery-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 8px;
+  }
+  .gallery-item {
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item:first-child { grid-row: 1 / 3; }
+  .gallery-ph {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .gallery-ph-label {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 400;
+  }
+  .g1 { background: linear-gradient(155deg, #7A9EAE, #4A7590); }
+  .g2 { background: linear-gradient(135deg, #9C7C55, #7A5E3C); }
+  .g3 { background: linear-gradient(145deg, #5C8060, #3D5C40); }
+  .g4 { background: linear-gradient(135deg, #8BA8B8, #6A8A9A); }
+  .g5 { background: linear-gradient(140deg, #B89B6E, #9A7D52); }
+
+  /* VIDEO */
+  .video-section {
+    background: var(--warm-dark);
+    padding: 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .video-left .section-label { color: var(--accent-light); }
+  .video-left .section-title { color: var(--white); max-width: 380px; }
+  .video-left p { color: rgba(253,250,245,0.65); font-size: 0.95rem; line-height: 1.75; }
+  .video-frame {
+    aspect-ratio: 16/9;
+    background: #1C1610;
+    border-radius: 2px;
+    border: 0.5px solid rgba(201,169,110,0.2);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1rem;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .video-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(155deg, rgba(91,143,168,0.15), rgba(139,107,61,0.1));
+  }
+  .play-btn {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.15);
+    border: 1px solid rgba(201,169,110,0.4);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    transition: background 0.2s;
+  }
+  .video-frame:hover .play-btn { background: rgba(201,169,110,0.3); }
+  .play-btn svg { margin-left: 4px; }
+  .video-caption {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(201,169,110,0.6); position: relative; z-index: 1;
+  }
+
+  /* AMENITIES */
+  .amenities {
+    background: var(--white);
+    padding: 6rem;
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem;
+    align-items: start;
+  }
+  .amenities-list { margin-top: 2rem; }
+  .amenity-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 0.95rem; color: var(--warm-mid);
+  }
+  .amenity-item:first-child { border-top: 0.5px solid var(--border); }
+  .amenity-dot {
+    width: 8px; height: 8px; flex-shrink: 0;
+    border-radius: 50%; background: var(--accent-light);
+  }
+  .amenities-right { padding-top: 1rem; }
+  .about-block {
+    background: var(--cream);
+    border-left: 2px solid var(--accent-light);
+    padding: 2rem 2.5rem;
+    border-radius: 0 2px 2px 0;
+    margin-bottom: 2rem;
+    font-size: 0.95rem; color: var(--warm-mid); line-height: 1.8;
+  }
+  .about-block strong { color: var(--warm-dark); font-weight: 500; }
+  .stats-row { display: flex; gap: 2rem; margin-top: 2rem; }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--accent); line-height: 1;
+  }
+  .stat-lbl { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+  /* REVIEWS */
+  .reviews {
+    background: var(--cream);
+    padding: 6rem;
+  }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+  }
+  .stars { color: var(--accent-light); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .review-text { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+  .review-author { font-size: 0.8rem; color: var(--warm-dark); font-weight: 500; letter-spacing: 0.05em; }
+
+  /* MAP */
+  .map-section {
+    padding: 6rem;
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .map-ph {
+    aspect-ratio: 4/3;
+    background: linear-gradient(145deg, #C8D8C0, #A8B898, #8A9E80);
+    border-radius: 2px;
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .map-ph::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    background: var(--accent);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 0 6px rgba(139,107,61,0.2);
+  }
+  .map-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(44,36,22,0.45); font-weight: 400;
+  }
+  .map-info .section-title { margin-bottom: 1.5rem; }
+  .map-detail { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+  .distance-list { list-style: none; }
+  .distance-list li {
+    display: flex; justify-content: space-between;
+    padding: 0.7rem 0; border-bottom: 0.5px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .distance-list li:first-child { border-top: 0.5px solid var(--border); }
+  .dist-label { color: var(--warm-mid); }
+  .dist-val { color: var(--warm-dark); font-weight: 500; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--warm-dark);
+    padding: 6rem;
+    text-align: center;
+  }
+  .contact .section-label { color: var(--accent-light); }
+  .contact .section-title { color: var(--white); margin: 0 auto 1.5rem; max-width: 520px; }
+  .contact-sub { color: rgba(253,250,245,0.55); font-size: 0.95rem; max-width: 420px; margin: 0 auto 3rem; }
+  .contact-cards {
+    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .contact-card {
+    background: rgba(253,250,245,0.06);
+    border: 0.5px solid rgba(201,169,110,0.2);
+    padding: 2rem 2.5rem;
+    border-radius: 2px; min-width: 200px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-card:hover { background: rgba(201,169,110,0.12); }
+  .contact-card-icon { font-size: 1.3rem; margin-bottom: 0.75rem; }
+  .contact-card-title { color: var(--accent-light); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .contact-card-val { color: var(--white); font-size: 0.95rem; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    background: #1A1208;
+    padding: 2rem 6rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 0.5px solid rgba(201,169,110,0.12);
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: rgba(253,250,245,0.4); }
+  .footer-copy { font-size: 0.75rem; color: rgba(253,250,245,0.25); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 3rem 2rem; }
+    .hero-right { min-height: 320px; }
+    .hero-badge { left: 1rem; bottom: 1rem; }
+    .features, .gallery, .video-section, .amenities, .reviews, .map-section, .contact { padding: 3.5rem 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feat-card { border-right: none; border-bottom: 0.5px solid var(--border); }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-column: 1 / 3; grid-row: auto; height: 260px; }
+    .gallery-item { height: 180px; }
+    .video-section, .amenities, .map-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.75rem; padding: 2rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">River<span>bir</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">О домике</a></li>
+    <li><a href="#gallery">Галерея</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#location">Как добраться</a></li>
+    <li><a href="#contact" class="nav-cta">Написать нам</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Река Бирь · Сосновый лес</p>
+    <h1 class="hero-title">Аренда домика у реки в Башкирии<br><em>Отдых на природе рядом с Уфой</em></h1>
+    <p class="hero-sub">Уютный домик у реки Бирь в Башкирии для отдыха на природе. 
+Всего в 2 часах от Уфы: баня на дровах, сап-борды, сосновый лес и полное уединение. 
+Идеально для пар и семей до 4 человек.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Забронировать</a>
+      <a href="#gallery" class="btn-ghost">Смотреть фото</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="photos/main.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="about">
+  <p class="section-label">Что особенного</p>
+  <h2 class="section-title">Продуманность в каждой детали</h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🛁</div>
+      <p class="feat-name">Баня на дровах у реки</p>
+      <p class="feat-desc">Настоящая баня прямо у воды — прогрелись и сразу в реку. Классика, которую не забудешь.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏄</div>
+      <p class="feat-name">Сап-борды в комплекте</p>
+      <p class="feat-desc">Плывите по реке Бирь в любое время. Сап-борды включены в стоимость — специальный опыт без доплат.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌲</div>
+      <p class="feat-name">Лес без забора</p>
+      <p class="feat-desc">Территория не ограничена — гуляйте по сосновому лесу сколько хотите. Никаких соседей, полная обособленность.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔥</div>
+      <p class="feat-name">Мангал с шампурами</p>
+      <p class="feat-desc">Вечер у огня с шашлыком — всё есть. Шампуры, решётки, уютное место у костра.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏡</div>
+      <p class="feat-name">Только вы</p>
+      <p class="feat-desc">На территории один домик. Никаких соседей, никакого шума. Это ваше личное пространство на всё время аренды.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">✦</div>
+      <p class="feat-name">Сделано с душой</p>
+      <p class="feat-desc">Качественные материалы, продуманный интерьер. Наши гости говорят, что чувствуется — дом строили с любовью.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div>
+      <p class="section-label">Галерея</p>
+      <h2 class="section-title">Посмотрите сами</h2>
+    </div>
+    <a href="#contact" class="btn-ghost" style="color: var(--warm-mid);">Хочу туда</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="photos/dom.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+    </div>
+    <div class="gallery-item">
+       <img src="photos/interior.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+    </div>
+    <div class="gallery-item">
+       <img src="photos/les.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+    </div>
+    <div class="gallery-item">
+       <img src="photos/banya.JPG" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+    </div>
+    <div class="gallery-item">
+       <img src="photos/night.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO
+<section class="video-section">
+  <div class="video-left">
+    <p class="section-label">Видео-тур</p>
+    <h2 class="section-title">Почувствуйте атмосферу</h2>
+    <p>Слова не передадут звук реки по утрам и запах соснового леса. Посмотрите короткий тур по Riverbir — и вы поймёте, почему гости возвращаются.</p>
+  </div>
+  <div class="video-frame">
+    <div class="play-btn">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <polygon points="7,4 16,10 7,16" fill="rgba(201,169,110,0.9)"/>
+      </svg>
+    </div>
+    <span class="video-caption">Вставьте ваше видео</span>
+  </div>
+</section> -->
+
+<!-- AMENITIES -->
+<section class="amenities" id="amenities">
+  <div>
+    <p class="section-label">Удобства</p>
+    <h2 class="section-title">Всё для отдыха</h2>
+    <ul class="amenities-list">
+      <li class="amenity-item"><span class="amenity-dot"></span>Баня на дровах у реки</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Сап-борды (в комплекте)</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Мангал, шампуры, решётки</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Полностью оборудованная кухня</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Спальные места до 4 человек</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Горячая вода и душ</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Wi-Fi</li>
+      <li class="amenity-item"><span class="amenity-dot"></span>Парковка на территории</li>
+    </ul>
+  </div>
+  <div class="amenities-right">
+    <div class="about-block">
+      <strong>Мы не экономим на мелочах.</strong> Каждый элемент домика выбирался с заботой о госте — от постельного белья до посуды. Когда вы заходите внутрь, вы это чувствуете.
+    </div>
+    <p style="font-size:0.9rem; color:var(--warm-mid); line-height:1.8; margin-bottom:2rem;">Riverbir — это аренда домика у реки в Башкирии для тех, кто ищет спокойный отдых на природе без соседей. 
+Дом расположен в живописном месте на берегу реки Бирь, в окружении соснового леса, недалеко от Уфы.</p>
+    <p style="font-size:0.9rem; color:var(--warm-mid); line-height:1.8; margin-bottom:2rem;">Мы создали пространство для уединённого отдыха: один домик на всей территории, тишина, свежий воздух и природа. 
+Здесь можно провести романтические выходные, семейный отдых или просто перезагрузиться вдали от города.</p>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-lbl">домик на всей территории</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-lbl">гостя максимум</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-lbl">гектаров леса рядом</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <p class="section-label">Отзывы</p>
+  <h2 class="section-title">Гости говорят</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">«Это настоящая сказка, красота наяву!
+Я так Рада, что провели время именно здесь!
+Очень уютно, чисто, а что главное - всё сделано для людей🙌🏻 редко встретишь место, где себя чувствуешь хорошо, не брезгливо 💫
+
+Спасибо организаторам, тут такая природа красивая, летают журавли, сосны, баня, ну и на сапах кататься можно! Я в полном восторге!
+Вечером можно посмотреть на проекторе фильмы✨
+
+Если всё ещё думаете ехать или нет, то ехать! И именно сюда🫶🏻»</p>
+      <p class="review-author">Лена Скипина</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">«- «Абстрагироваться от всего, жить в моменте». И брать максимум ! «
+Именно так хочется сказать об этом атмосферном месте . RiveBir попал именно в самое сердечко . На просторах интернета увидела , не задумываясь забронировала . Провели с мужем шикарный выходной , только вдвоем , решили напомнить себе , что мы только родители , но еще и пара ! Понравилось абсолютно , ни добавить , ни убавить ! Первым делом обратила внимание на чистоту дома , в доме продумано все до мелочей , очень уютно, сразу чувствуется забота о гостях ! В доме имелось все для комфортного отдыха : удобная мебель , освещение , теплое белье и современный дизайн . Окружающая природа добавляет особую атмосферу уединения и покоя !!! Баня была просто шикарна ( она вообще шикарна , подкинули раз и была просто жара , даже можно было не поддавать ) , а после баньки окунуться в бодрящую воду - особый кайф , а после бани насладиться травяным чаем ! Вечером на проекторе посмотреть фильм под теплым одеялом . утром с удовольствие попили свеже сваренный кофе . В общем от этого место эмоций и впечатлений много . Писать и описывать все можно долго . Обязательно вернемся отдохнуть с детьми ! Кстати хочу заметить , что хозяин дома всегда был с нами на связи , на все интересующие вопросы отвечал быстро , даже вопрос с веником для бани быстро помог решить и уместных жителей деревне договорился и мы приобрели !»</p>
+      <p class="review-author">Татьяна Герр</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">«Алсу,хочу сказать вам огромное спасибо за прекрасно организованный отдых в вашем сказочном доме🫶
+В доме,где продумано все до мелочей,оформлено все с такой любовью и заботой о гостях!
+Красивый и уютный !
+Это идеальное место для тех кто хочет уединения и отдыха для души.
+Это то место,куда хочется вернуться! RiverBir остался в нашем сердце🫶
+А какие локации вокруг..лес ,река..
+А атмосферные виды с окна🔥
+Чудесная банька,из которой можно сразу окунуться в реку.
+Отдельное спасибо вам за гостеприимство,за отзывчивость. Хотим пожелать вам дальнейшего процветания и хороших гостей в вашем сказочном доме.С удовольствием делимся вашими контактами и мечтаем попасть к вам летом🫶.»</p>
+      <p class="review-author">Евгения Совва
+</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP / LOCATION -->
+<section class="map-section" id="location">
+  <iframe src="https://yandex.ru/map-widget/v1/?ll=56.072268%2C55.455474&mode=whatshere&whatshere%5Bpoint%5D=56.070433%2C55.456626&whatshere%5Bzoom%5D=17.6&z=15" width="100%" height="100%" 
+  style="border:none; border-radius:2px; min-height:400px;"
+  allowfullscreen></iframe>
+  <div class="map-info">
+    <p class="section-label">Как добраться</p>
+    <h2 class="section-title">На пересечении реки и леса</h2>
+    <p class="map-detail">Домик расположен в Башкирии на берегу реки Бирь, примерно в 2 часах езды от Уфы. 
+Это удобное место для загородного отдыха на природе: легко добраться на машине и при этом полное ощущение уединения.</p>
+    <ul class="distance-list">
+      <li><span class="dist-label">Ближайший город</span><span class="dist-val">Уфа</span></li>
+      <li><span class="dist-label">Магазин</span><span class="dist-val">В 5 минутах на авто</span></li>
+      <li><span class="dist-label">Парковка</span><span class="dist-val">На территории</span></li>
+      <li><span class="dist-label">Река</span><span class="dist-val">Прямо у домика</span></li>
+      <li><span class="dist-label">Лес</span><span class="dist-val">В шаге от крыльца</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Бронирование</p>
+  <h2 class="section-title">Готовы к отдыху? Напишите нам</h2>
+  <p class="contact-sub">Расскажите о желаемых датах — и мы проверим наличие мест и ответим на все вопросы.</p>
+  <div class="contact-cards">
+    <a href="https://vk.com/riverbir" class="contact-card">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-title">Вконтакте</div>
+      <div class="contact-card-val">Написать нам</div>
+    </a>
+    <a href="https://t.me/riverbir" class="contact-card">
+      <div class="contact-card-icon">✈️</div>
+      <div class="contact-card-title">Telegram</div>
+      <div class="contact-card-val">@riverbir</div>
+    </a>
+    <a href="tel:+7" class="contact-card">
+      <div class="contact-card-icon">📞</div>
+      <div class="contact-card-title">Телефон</div>
+      <div class="contact-card-val">+7 (919) 618-75-59</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Riverbir</div>
+  <div class="footer-copy">© 2025 Riverbir. Все права защищены.</div>
+</footer>
+
+</body>
+</html>
