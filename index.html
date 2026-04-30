@@ -7,8 +7,8 @@
 <meta name="description" content="Аренда уютного домика у реки в Башкирии. Отдых на природе рядом с Уфой: баня на дровах, сап-борды, лес и тишина. Домик до 4 человек без соседей."><meta name="keywords" content="аренда домика Башкирия, отдых на природе Башкирия, домик у реки, глэмпинг Башкирия, аренда дома у воды">
 <meta property="og:title" content="Riverbir — домик у реки в Башкирии">
 <meta property="og:description" content="Tiny house на пересечении реки Бирь и соснового леса. Баня, сап-борды, тишина.">
-<meta property="og:image" content="https://вашсайт.ru/photos/hero.jpg">
-<meta property="og:url" content="https://вашсайт.ru">
+<meta property="og:image" content="https://riverbir.ru/photos/hero.jpg">
+<meta property="og:url" content="https://riverbir.ru">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -192,40 +192,149 @@
   .feat-desc { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.65; }
 
   /* GALLERY */
-  .gallery {
-    padding: 6rem;
-    background: var(--cream);
-  }
-  .gallery-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 2.5rem;
-  }
+.gallery {
+  padding: 6rem;
+  background: var(--cream);
+}
+.gallery-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 260px); */
+  gap: 8px;
+}
+.gallery-item {
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.gallery-item:hover img { transform: scale(1.04); }
+
+.gallery-item:nth-child(1) { grid-column: span 2 / span 2;}
+.gallery-item:nth-child(2) { grid-column-start: 3; }
+.gallery-item:nth-child(3) { grid-column-start: 4; }
+.gallery-item:nth-child(4) { grid-column-start: 1; }
+.gallery-item:nth-child(5) { grid-column-start: 2; }
+.gallery-item:nth-child(6) { grid-column: span 2 / span 2; grid-column-start: 3; }
+.gallery-item:nth-child(7) { grid-column-start: 1; }
+.gallery-item:nth-child(8) { grid-column-start: 2; }
+.gallery-item:nth-child(9) { grid-column-start: 3; }
+.gallery-item:nth-child(10) { grid-column-start: 4; }
+.gallery-item:nth-child(11) { grid-column-start: 1; }
+.gallery-item:nth-child(12) { grid-column-start: 2; }
+.gallery-item:nth-child(13) { grid-column-start: 3; }
+.gallery-item:nth-child(14) { grid-column-start: 4; }
+
+
+
+/* .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3;}
+.gallery-item:nth-child(2) { grid-column: 3; grid-row: 1; }
+.gallery-item:nth-child(3) { grid-column: 4; grid-row: 1; }
+.gallery-item:nth-child(4) { grid-column: 3; grid-row: 2; }
+.gallery-item:nth-child(5) { grid-column: 4; grid-row: 2; }
+.gallery-item:nth-child(6) { grid-column: 1 / 3; grid-row: 3; }
+.gallery-item:nth-child(7) { grid-column: 3; grid-row: 3; }
+.gallery-item:nth-child(8) { grid-column: 4; grid-row: 3; }
+.gallery-item:nth-child(9)  { grid-column: 1; grid-row: 4; }
+.gallery-item:nth-child(10) { grid-column: 2; grid-row: 4; }
+.gallery-item:nth-child(11) { grid-column: 3; grid-row: 4; }
+.gallery-item:nth-child(12) { grid-column: 4; grid-row: 4; } */
+
+/* LIGHTBOX */
+.lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(20,14,6,0.95);
+  align-items: center;
+  justify-content: center;
+}
+.lb-overlay.active { display: flex; }
+.lb-content img {
+  max-width: 85vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+}
+.lb-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+}
+.lb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+}
+.lb-prev { left: 2rem; }
+.lb-next { right: 2rem; }
+.lb-counter {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* мобиле: первое широкое, остальные 2 колонки */
+@media (max-width: 900px) {
+  .gallery { padding: 3.5rem 2rem; }
   .gallery-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 160px;
+    row-gap: 6px;
+    column-gap: 6px;
   }
-  .gallery-item {
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-  .gallery-item:first-child { grid-row: 1 / 3; }
-  .gallery-ph {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 0.5rem;
-  }
-  .gallery-ph-label {
-    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55); font-weight: 400;
-  }
-  .g1 { background: linear-gradient(155deg, #7A9EAE, #4A7590); }
-  .g2 { background: linear-gradient(135deg, #9C7C55, #7A5E3C); }
-  .g3 { background: linear-gradient(145deg, #5C8060, #3D5C40); }
-  .g4 { background: linear-gradient(135deg, #8BA8B8, #6A8A9A); }
-  .g5 { background: linear-gradient(140deg, #B89B6E, #9A7D52); }
+  .gallery-item:nth-child(1)  { grid-column: 1 / 3; grid-row: auto; }
+  .gallery-item:nth-child(2)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(3)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(4)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(5)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(6)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(7)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(8)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(9)  { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(10) { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(11) { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(12) { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(13) { grid-column: auto; grid-row: auto; }
+  .gallery-item:nth-child(14) { grid-column: 1 / 3; grid-row: auto; }
+}
 
   /* VIDEO */
   .video-section {
@@ -410,13 +519,11 @@
     .features, .gallery, .video-section, .amenities, .reviews, .map-section, .contact { padding: 3.5rem 2rem; }
     .features-grid { grid-template-columns: 1fr; }
     .feat-card { border-right: none; border-bottom: 0.5px solid var(--border); }
-    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .gallery-item:first-child { grid-column: 1 / 3; grid-row: auto; height: 260px; }
-    .gallery-item { height: 180px; }
+    /* строки про .gallery-grid и .gallery-item — удалить! */
     .video-section, .amenities, .map-section { grid-template-columns: 1fr; gap: 2.5rem; }
     .reviews-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 0.75rem; padding: 2rem; text-align: center; }
-  }
+}
 </style>
 </head>
 <body>
@@ -495,26 +602,37 @@
       <p class="section-label">Галерея</p>
       <h2 class="section-title">Посмотрите сами</h2>
     </div>
-    <a href="#contact" class="btn-ghost" style="color: var(--warm-mid);">Хочу туда</a>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="photos/dom.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
-    </div>
-    <div class="gallery-item">
-       <img src="photos/interior.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
-    </div>
-    <div class="gallery-item">
-       <img src="photos/les.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
-    </div>
-    <div class="gallery-item">
-       <img src="photos/banya.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
-    </div>
-    <div class="gallery-item">
-       <img src="photos/night.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Домик снаружи">
-    </div>
+    <div class="gallery-item"><img src="photos/newdom.jpg" alt="Домик снаружи"></div>
+    <div class="gallery-item"><img src="photos/banya.jpg" alt="Интерьер"></div>
+    <div class="gallery-item"><img src="photos/devushka.jpg" alt="Река Бирь"></div>
+    <div class="gallery-item"><img src="photos/derevya.jpg" alt="Баня у воды"></div>
+    <div class="gallery-item"><img src="photos/kitchen.jpg" alt="Спальня"></div>
+    <div class="gallery-item"><img src="photos/interior.jpg" alt="Рассвет у реки"></div>
+    <div class="gallery-item"><img src="photos/fireplace.jpg" alt="Мангал"></div>
+    <div class="gallery-item"><img src="photos/reka.jpg" alt="Сосновый лес"></div>
+    <div class="gallery-item"><img src="photos/most.jpg" alt="Сап-борды"></div>
+    <div class="gallery-item"><img src="photos/stairs.jpg" alt="Кухня"></div>
+    <div class="gallery-item"><img src="photos/para.jpg" alt="Терраса"></div>
+    <div class="gallery-item"><img src="photos/les.jpg" alt="Вид на лес"></div>
+    <div class="gallery-item"><img src="photos/bedroom.jpg" alt="Вид из окна"></div>
+    <div class="gallery-item"><img src="photos/night.jpg" alt="Вид из окна"></div>
+
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox">
+  <div class="lb-content">
+    <img id="lbImage" src="" alt="">
+  </div>
+  <button class="lb-close" id="lbClose">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+  <button class="lb-nav lb-next" id="lbNext">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
 
 <!-- VIDEO
 <section class="video-section">
@@ -662,6 +780,43 @@
   <div class="footer-logo">Riverbir</div>
   <div class="footer-copy">© 2025 Riverbir. Все права защищены.</div>
 </footer>
+
+<script>
+  const items = document.querySelectorAll('.gallery-item');
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImage');
+  const lbCounter = document.getElementById('lbCounter');
+  const srcs = [...items].map(el => ({
+    src: el.querySelector('img').src,
+    alt: el.querySelector('img').alt
+  }));
+  let current = 0;
+
+  function openLb(i) {
+    current = i;
+    lbImg.src = srcs[i].src;
+    lbImg.alt = srcs[i].alt;
+    lbCounter.textContent = (i + 1) + ' / ' + srcs.length;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach((el, i) => el.addEventListener('click', () => openLb(i)));
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => openLb((current - 1 + srcs.length) % srcs.length));
+  document.getElementById('lbNext').addEventListener('click', () => openLb((current + 1) % srcs.length));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') openLb((current - 1 + srcs.length) % srcs.length);
+    if (e.key === 'ArrowRight') openLb((current + 1) % srcs.length);
+  });
+</script>
 
 </body>
 </html>
