@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Tiny House</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#f6f3ec;
+    --card:#fffdf8;
+    --text:#2c2a26;
+    --muted:#6d685f;
+    --line:#e5dfd3;
+    --accent:#7f9a7a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+section{
+    padding:100px 0;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    height:100vh;
+    min-height:760px;
+    overflow:hidden;
+}
+
+.hero img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.15),
+        rgba(0,0,0,.35)
+    );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+
+.hero-box{
+    max-width:760px;
+    color:white;
+}
+
+.hero-sub{
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:13px;
+    margin-bottom:24px;
+    opacity:.9;
+}
+
+.hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px;
+    line-height:.92;
+    font-weight:600;
+    margin-bottom:28px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.9;
+    max-width:620px;
+    margin-bottom:42px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px 34px;
+    border-radius:100px;
+    background:white;
+    color:#222;
+    font-size:15px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* TITLES */
+
+.section-sub{
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px;
+    line-height:1;
+    font-weight:600;
+    margin-bottom:28px;
+}
+
+.section-text{
+    color:var(--muted);
+    line-height:1.9;
+    font-size:17px;
+    max-width:760px;
+}
+
+/* MODEL */
+
+.model{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:90px;
+    align-items:center;
+}
+
+.model-image{
+    background:white;
+    border-radius:36px;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.model-image img{
+    border-radius:24px;
+    height:700px;
+    object-fit:cover;
+}
+
+.model-content h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:68px;
+    line-height:1;
+    margin-bottom:24px;
+}
+
+.model-content p{
+    color:var(--muted);
+    line-height:1.9;
+    margin-bottom:28px;
+    font-size:17px;
+}
+
+/* FEATURES */
+
+.feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:90px;
+    align-items:center;
+    margin-bottom:140px;
+}
+
+.feature.reverse .feature-image{
+    order:2;
+}
+
+.feature.reverse .feature-content{
+    order:1;
+}
+
+.feature-image-wrap{
+    background:white;
+    border-radius:34px;
+    width:85%;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.feature-image{
+    display:flex;
+    justify-content:center;
+}
+
+.feature-image img{
+    border-radius:22px;
+    height:500px;
+    object-fit:cover;
+}
+
+.feature-content h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:56px;
+    line-height:1;
+    margin-bottom:22px;
+}
+
+.feature-content p{
+    color:var(--muted);
+    line-height:1.9;
+    font-size:17px;
+}
+
+/* FAQ */
+
+.faq{
+    max-width:900px;
+    margin:auto;
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+    padding:30px 0;
+}
+
+.faq-question{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    gap:30px;
+}
+
+.faq-question h4{
+    font-size:24px;
+    font-weight:500;
+}
+
+.faq-icon{
+    font-size:30px;
+    color:var(--accent);
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.faq-answer p{
+    padding-top:20px;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:24px;
+    margin-top:60px;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:28px;
+}
+
+.g1{
+    grid-column:span 7;
+    height:520px;
+}
+
+.g2{
+    grid-column:span 5;
+    height:520px;
+}
+
+.g3{
+    grid-column:span 5;
+    height:360px;
+}
+
+.g4{
+    grid-column:span 7;
+    height:360px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#ece7dc;
+    border-top-left-radius:60px;
+    border-top-right-radius:60px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+}
+
+.contact-info h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px;
+    line-height:1;
+    margin-bottom:24px;
+}
+
+.contact-info p{
+    color:var(--muted);
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.contact-links{
+    margin-top:40px;
+}
+
+.contact-links a{
+    display:block;
+    margin-bottom:16px;
+    font-size:18px;
+}
+
+/* FORM */
+
+form{
+    background:var(--card);
+    padding:40px;
+    border-radius:34px;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:18px 20px;
+    border:none;
+    border-radius:18px;
+    background:#f5f1e8;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    color:var(--text);
+}
+
+textarea{
+    resize:none;
+    height:160px;
+}
+
+button{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:var(--accent);
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+    .model,
+    .feature,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .feature.reverse .feature-image{
+        order:1;
+    }
+
+    .feature.reverse .feature-content{
+        order:2;
+    }
+
+    .feature-image-wrap{
+        width:100%;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .g1,.g2,.g3,.g4{
+        grid-column:auto;
+        height:320px;
+    }
+
+}
+
+@media(max-width:700px){
+
+    section{
+        padding:60px 0;
+    }
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .section-title,
+    .contact-info h2,
+    .model-content h2{
+        font-size:48px;
+    }
+
+    .feature-content h3{
+        font-size:42px;
+    }
+
+    .hero{
+        min-height:680px;
+    }
+
+    .model-image img{
+        height:500px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <img src="main.jpg">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="hero-box">
+
+            <div class="hero-sub">
+                TINY HOUSE • МИНИ ДОМ
+            </div>
+
+            <h1>
+                Дома для жизни ближе к природе
+            </h1>
+
+            <p>
+                Современные tiny houses для отдыха,
+                жизни и бизнеса. Минимализм, эстетика
+                и комфорт в гармонии с природой.
+            </p>
+
+            <a href="#model" class="btn">
+                Смотреть проект
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- MODEL -->
+
+<section id="model">
+
+    <div class="container model">
+
+        <div class="model-image">
+
+            <img src="people.jpg">
+
+        </div>
+
+        <div class="model-content">
+
+            <div class="section-sub">
+                Наша модель
+            </div>
+
+            <h2>
+                Forest Cabin
+            </h2>
+
+            <p>
+                Наш первый tiny house создан для комфортного
+                отдыха в окружении природы. Панорамные окна,
+                тёплый интерьер и продуманная планировка делают
+                его идеальным местом для жизни и аренды.
+            </p>
+
+            <p>
+                Дом подходит как для личного использования,
+                так и для коммерческих проектов:
+                глэмпингов, баз отдыха и туристических локаций.
+            </p>
+
+            <a href="/index.html" class="btn">
+                Узнать подробнее
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section>
+
+    <div class="container">
+
+        <div class="feature">
+
+            <div class="feature-image">
+
+                <div class="feature-image-wrap">
+
+                    <img src="angle.jpg">
+
+                </div>
+
+            </div>
+
+            <div class="feature-content">
+
+                <div class="section-sub">
+                    Почемы мы?
+                </div>
+
+                <h3>
+                    Наш подход 
+                </h3>
+
+                <p>
+                    Наша компания проектирует и строит высококачественные мини-дома, рассчитанные на долгий срок службы. Мы тщательно продумываем каждую деталь дома, уделяя внимание долговечности, комфорту и продуманному дизайну, создавая дома, которые максимально эффективно используют пространство, не жертвуя при этом качеством или индивидуальностью.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="feature reverse">
+
+            <div class="feature-image">
+
+                <div class="feature-image-wrap">
+
+                    <img src="buisnes.jpg">
+
+                </div>
+
+            </div>
+
+            <div class="feature-content">
+
+                <div class="section-sub">
+                    Есть участок?
+                </div>
+
+                <h3>
+                    Превратите свой участок в прибыльное место отдыха.
+                </h3>
+
+                <p>
+                    Инвестиции в бизнес по сдаче в аренду небольших домов могут стать отличным способом получения пассивного дохода, предлагая при этом уникальные и востребованные варианты размещения. Независимо от того, являетесь ли вы опытным инвестором или землевладельцем, стремящимся монетизировать свою недвижимость, наши дома предоставляет возможность выйти на растущий рынок экотуризма и альтернативного образа жизни.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-image">
+
+                <div class="feature-image-wrap">
+
+                    <img src="interior-2.jpg">
+
+                </div>
+
+            </div>
+
+            <div class="feature-content">
+
+                <div class="section-sub">
+                    Начните отдых
+                </div>
+
+                <h3>
+                    Готово к заселению. Готово к сдаче в аренду. 
+                </h3>
+
+                <p>
+                    Наши мини-дома готовы к заселению — в прямом смысле слова. Просто установите его на ровной поверхности, подключите к коммуникациям, и всё. У вас будет полностью построенный, прекрасно отделанный дом, готовый к немедленному заселению или сдаче в аренду. 
+
+                    Независимо от того, создаёте ли вы пространство для семьи или обустраиваете пятизвёздочный гостевой домик в своём саду, это идеальный вариант для комфортной жизни. Никаких строителей, никакой пыли, никаких месяцев неудобств — просто стильное, продуманное пространство, которое органично впишется в вашу жизнь без лишних проблем. 
+
+                    В нём есть всё необходимое, ничего лишнего, и он готов к использованию с момента прибытия.
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- FAQ -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-sub" style="text-align:center;">
+            FAQ
+        </div>
+
+        <h2 class="section-title" style="text-align:center;">
+            Часто задаваемые вопросы
+        </h2>
+
+        <div class="faq">
+
+            <div class="faq-item">
+
+                <div class="faq-question">
+                    <h4>Можно ли использовать дом зимой?</h4>
+                    <div class="faq-icon">+</div>
+                </div>
+
+                <div class="faq-answer">
+                    <p>
+                        Да, дом рассчитан на круглогодичное проживание
+                        и может быть оснащён утеплением и отоплением.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+
+                <div class="faq-question">
+                    <h4>Подходит ли tiny house для аренды?</h4>
+                    <div class="faq-icon">+</div>
+                </div>
+
+                <div class="faq-answer">
+                    <p>
+                        Да, такие дома отлично подходят для краткосрочной
+                        аренды и туристических проектов.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+
+                <div class="faq-question">
+                    <h4>Насколько сильно я могу настроить параметры под себя?</h4>
+                    <div class="faq-icon">+</div>
+                </div>
+
+                <div class="faq-answer">
+                    <p>
+                        Наши проекты не являются чем-то незыблемым, но они тщательно проработаны, и многие из наших решений по планировке основаны на реальном опыте. Мы выяснили, что работает в небольших помещениях, и используем эти принципы в качестве прочной основы.
+
+                        Тем не менее, безусловно, есть место для корректировок. Будь то отделка, корректировка планировки или идеи по хранению, мы всегда рады обсудить возможные варианты. 
+
+                        Просто помните, что в условиях ограниченного пространства даже небольшие изменения могут иметь цепную реакцию. Мы не предлагаем полностью индивидуальные проекты, но всегда будем стараться сделать ваше пространство по-настоящему вашим.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-sub">
+            Галерея
+        </div>
+
+        <h2 class="section-title">
+            Атмосфера наших домов
+        </h2>
+
+        <div class="gallery-grid">
+
+            <img class="g1" src="dom.jpg">
+
+            <img class="g2" src="interior.jpg">
+
+            <img class="g3" src="stairs.jpg">
+
+            <img class="g4" src="kitchen.jpg">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+    <div class="container contact-grid">
+
+        <div class="contact-info">
+
+            <div class="section-sub">
+                Контакты
+            </div>
+
+            <h2>
+                Свяжитесь с нами
+            </h2>
+
+            <p>
+                Расскажите о вашем проекте
+                или задайте любой вопрос.
+            </p>
+
+            <div class="contact-links">
+
+                <a href="instagram.com/river_bir">
+                    Instagram
+                </a>
+
+                <a href="t.me/riverbir">
+                    Telegram
+                </a>
+
+                <a href="wa.me/79196187559">
+                    WhatsApp
+                </a>
+
+                <a href="mailto:tinyhouseufa@gmail.com">
+                    tinyhouseufa@gmail.com
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form action="https://formspree.io/f/xnjwzwvd" method="POST">
+
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group">
+                <textarea name="message" placeholder="Ваше сообщение"></textarea>
+            </div>
+
+            <button type="submit">
+                Отправить сообщение
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 RiverBir Build. All rights reserved.
+</footer>
+
+<script>
+
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+
+    question.addEventListener('click', () => {
+
+        const isOpen = answer.style.maxHeight;
+
+        document.querySelectorAll('.faq-answer').forEach(el => {
+            el.style.maxHeight = null;
+        });
+
+        document.querySelectorAll('.faq-icon').forEach(el => {
+            el.textContent = '+';
+        });
+
+        if(!isOpen){
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.textContent = '−';
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
