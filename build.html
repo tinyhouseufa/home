@@ -354,13 +354,62 @@ section{
 }
 
 .contact-links{
-    margin-top:40px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:42px;
 }
 
 .contact-links a{
-    display:block;
-    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 24px;
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:22px;
+    font-size:17px;
+    color:var(--text);
+    backdrop-filter:blur(8px);
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.contact-links a::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        rgba(255,255,255,.35),
+        rgba(255,255,255,0)
+    );
+    opacity:0;
+    transition:.35s;
+}
+
+.contact-links a::after{
+    content:'↗';
     font-size:18px;
+    opacity:.55;
+    transition:.35s;
+}
+
+.contact-links a:hover{
+    transform:translateY(-4px);
+    background:white;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    border-color:rgba(0,0,0,.04);
+}
+
+.contact-links a:hover::before{
+    opacity:1;
+}
+
+.contact-links a:hover::after{
+    transform:translate(4px,-4px);
+    opacity:1;
 }
 
 /* FORM */
@@ -369,6 +418,27 @@ form{
     background:var(--card);
     padding:40px;
     border-radius:34px;
+}
+
+.form-message{
+    margin-top:18px;
+    padding:16px 18px;
+    border-radius:18px;
+    font-size:15px;
+    display:none;
+    line-height:1.6;
+}
+
+.form-message.success{
+    display:block;
+    background:#e5f2e2;
+    color:#4f6b49;
+}
+
+.form-message.error{
+    display:block;
+    background:#f8e3e3;
+    color:#8b4d4d;
 }
 
 .input-group{
@@ -489,7 +559,7 @@ footer{
 
 <header class="hero">
 
-    <img src="photos/main.jpg">
+    <img src="main.jpg">
 
     <div class="hero-overlay"></div>
 
@@ -529,7 +599,7 @@ footer{
 
         <div class="model-image">
 
-            <img src="photos/people.jpg">
+            <img src="people.jpg">
 
         </div>
 
@@ -578,7 +648,7 @@ footer{
 
                 <div class="feature-image-wrap">
 
-                    <img src="photos/angle.jpg">
+                    <img src="angle.jpg">
 
                 </div>
 
@@ -608,7 +678,7 @@ footer{
 
                 <div class="feature-image-wrap">
 
-                    <img src="photos/buisnes.jpg">
+                    <img src="buisnes.jpg">
 
                 </div>
 
@@ -639,7 +709,7 @@ footer{
 
                 <div class="feature-image-wrap">
 
-                    <img src="photos/interior-2.jpg">
+                    <img src="interior-2.jpg">
 
                 </div>
 
@@ -759,13 +829,13 @@ footer{
 
         <div class="gallery-grid">
 
-            <img class="g1" src="photos/dom.jpg">
+            <img class="g1" src="dom.jpg">
 
-            <img class="g2" src="photos/interior.jpg">
+            <img class="g2" src="interior.jpg">
 
-            <img class="g3" src="photos/stairs.jpg">
+            <img class="g3" src="stairs.jpg">
 
-            <img class="g4" src="photos/kitchen.jpg">
+            <img class="g4" src="kitchen.jpg">
 
         </div>
 
@@ -796,20 +866,20 @@ footer{
 
             <div class="contact-links">
 
-                <a href="instagram.com/river_bir">
-                    Instagram
+                <a href="https://instagram.com/river_bir">
+                    <span>Instagram</span>
                 </a>
 
-                <a href="t.me/riverbir">
-                    Telegram
+                <a href="https://t.me/riverbir">
+                    <span>Telegram</span>
                 </a>
 
-                <a href="wa.me/79196187559">
-                    WhatsApp
+                <a href="https://wa.me/79196187559">
+                    <span>WhatsApp</span>
                 </a>
 
                 <a href="mailto:tinyhouseufa@gmail.com">
-                    tinyhouseufa@gmail.com
+                    <span>tinyhouseufa@gmail.com</span>
                 </a>
 
             </div>
@@ -818,7 +888,7 @@ footer{
 
         <!-- FORM -->
 
-        <form action="https://formspree.io/f/xnjwzwvd" method="POST">
+        <form id="contact-form" action="https://formspree.io/f/xnjwzwvd" method="POST">
 
             <div class="input-group">
                 <input type="text" name="name" placeholder="Ваше имя" required>
@@ -836,6 +906,8 @@ footer{
                 Отправить сообщение
             </button>
 
+            <div class="form-message" id="form-message"></div>
+
         </form>
 
     </div>
@@ -848,32 +920,45 @@ footer{
 
 <script>
 
-const faqItems = document.querySelectorAll('.faq-item');
+const form = document.getElementById('contact-form');
+const messageBox = document.getElementById('form-message');
 
-faqItems.forEach(item => {
+form.addEventListener('submit', async function(e){
 
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    const icon = item.querySelector('.faq-icon');
+    e.preventDefault();
 
-    question.addEventListener('click', () => {
+    const formData = new FormData(form);
 
-        const isOpen = answer.style.maxHeight;
+    try{
 
-        document.querySelectorAll('.faq-answer').forEach(el => {
-            el.style.maxHeight = null;
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         });
 
-        document.querySelectorAll('.faq-icon').forEach(el => {
-            el.textContent = '+';
-        });
+        if(response.ok){
 
-        if(!isOpen){
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            icon.textContent = '−';
+            messageBox.className = 'form-message success';
+            messageBox.textContent = 'Сообщение успешно отправлено. Мы свяжемся с вами в ближайшее время.';
+
+            form.reset();
+
+        }else{
+
+            messageBox.className = 'form-message error';
+            messageBox.textContent = 'Ошибка при отправке формы. Попробуйте позже.';
+
         }
 
-    });
+    }catch(error){
+
+        messageBox.className = 'form-message error';
+        messageBox.textContent = 'Не удалось отправить сообщение.';
+
+    }
 
 });
 
